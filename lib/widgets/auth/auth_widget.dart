@@ -12,7 +12,8 @@ class _AuthWidgetState extends State<AuthWidget> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text('Login to your account'),
+        title: const Text('Login to your account', style: TextStyle(color: Colors.white),
+      ),
       ),
     );
   }
