@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/widgets/auth/auth_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData( 
         primarySwatch: Colors.blue
       ),
-      home: Text('Start'),
+      home: AuthWidget(),
     );
   }
 }
