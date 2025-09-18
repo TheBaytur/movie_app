@@ -90,7 +90,9 @@ class __FormWidgetState extends State<_FormWidget> {
           obscureText: true,
           decoration: InputDecoration(
             
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.blue),
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -102,6 +104,7 @@ class __FormWidgetState extends State<_FormWidget> {
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
+                
               ),
             ),
             child: const Text('Login', style: TextStyle(fontSize: 18)),
