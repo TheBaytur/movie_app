@@ -63,7 +63,7 @@ class __FormWidgetState extends State<_FormWidget> {
     color: Color(0xFF212519),
   );
   final textFieldDecoration = const InputDecoration(
-    contentPadding:  EdgeInsets.symmetric(horizontal: 10),
+    contentPadding:  EdgeInsets.symmetric(horizontal: 10, vertical: 10),
   );
   @override
   Widget build(BuildContext context) {
