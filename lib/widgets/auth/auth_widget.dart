@@ -65,6 +65,7 @@ class __FormWidgetState extends State<_FormWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Username',
