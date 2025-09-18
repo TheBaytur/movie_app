@@ -28,8 +28,8 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20),
-      child:  Column(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
         children: [
           SizedBox(height: 25),
           _FormWidget(),
@@ -38,11 +38,11 @@ class _HeaderWidget extends StatelessWidget {
             'In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. ',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
-                  SizedBox(height: 25),
-          Text('If you signed up but didn\'t receive the verification email, click here to have it resent. ',
-          style: TextStyle(fontSize: 16, color: Colors.black54),
+          SizedBox(height: 25),
+          Text(
+            'If you signed up but didn\'t receive the verification email, click here to have it resent. ',
+            style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
-          
         ],
       ),
     );
@@ -57,26 +57,36 @@ class _FormWidget extends StatefulWidget {
 }
 
 class __FormWidgetState extends State<_FormWidget> {
+  final TextStyle style = const TextStyle(
+    fontFamily: 'Montserrat',
+    fontSize: 16.0,
+    color: Color(0xFF212519),
+  );
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(
+          'Username',
+          style: style,
+        ),
         TextField(
           decoration: InputDecoration(
             labelText: 'Username',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            
           ),
         ),
         const SizedBox(height: 20),
+        Text(
+          'Password',
+          style: style,
+        ),
         TextField(
           obscureText: true,
           decoration: InputDecoration(
             labelText: 'Password',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
         ),
         const SizedBox(height: 20),
@@ -90,10 +100,7 @@ class __FormWidgetState extends State<_FormWidget> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            child: const Text(
-              'Login',
-              style: TextStyle(fontSize: 18),
-            ),
+            child: const Text('Login', style: TextStyle(fontSize: 18)),
           ),
         ),
       ],
