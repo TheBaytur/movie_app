@@ -76,7 +76,7 @@ class __FormWidgetState extends State<_FormWidget> {
         ),
         TextField(
           decoration: InputDecoration(
-            labelText: 'Username',
+            
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             
           ),
@@ -89,7 +89,7 @@ class __FormWidgetState extends State<_FormWidget> {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'Password',
+            
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
         ),
