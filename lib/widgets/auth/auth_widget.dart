@@ -96,20 +96,28 @@ class __FormWidgetState extends State<_FormWidget> {
             ),
           ),
         ),
+
+
         const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(
+        Row(
+          children: [
+            ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(Colors.blue
               ),
             ),
             child: const Text('Login', style: TextStyle(fontSize: 18)),
           ),
+          const SizedBox(width: 20),
+          ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.blue)), 
+            child: const Text('Reset password', style: TextStyle(fontSize: 18)),
+          ),
+
+
+          ],
         ),
       ],
     );
