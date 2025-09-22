@@ -64,8 +64,17 @@ class _FormWidget extends StatefulWidget {
 
 class __FormWidgetState extends State<_FormWidget> {
 
+  final _loginTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+
 void _auth () {
-  print('123');
+  final login = _loginTextController.text;
+  final password = _passwordTextController.text;
+  if (login.isEmpty || password.isEmpty) {
+    print('Error, login or password is empty');
+    return;
+  }
+  print('Login: $login, password: $password');
 }
 
 void _resetPassword () {
@@ -87,6 +96,7 @@ void _resetPassword () {
       children: [
         Text('Username', style: style),
         TextField(
+          controller: _loginTextController,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -94,6 +104,7 @@ void _resetPassword () {
         const SizedBox(height: 20),
         Text('Password', style: style),
         TextField(
+          controller: _passwordTextController,
           obscureText: true,
           decoration: InputDecoration(
             border: OutlineInputBorder(
