@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/Theme/app_button_style.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -27,22 +28,27 @@ class _HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 25),
-          _FormWidget(),
-          SizedBox(height: 25),
-          Text(
+          const SizedBox(height: 25),
+          const _FormWidget(),
+          const SizedBox(height: 25),
+          const Text(
             'In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. ',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
-          SizedBox(height: 25),
-          Text(
+          const SizedBox(height: 5),
+          ElevatedButton(onPressed: () {}, child: const Text('Register')),
+          const SizedBox(height: 25),
+          const Text(
             'If you signed up but didn\'t receive the verification email, click here to have it resent. ',
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
+          const SizedBox(height: 5),
+          ElevatedButton(onPressed: () {}, child: const Text('Verify email')),
         ],
       ),
     );
@@ -98,18 +104,16 @@ class __FormWidgetState extends State<_FormWidget> {
               ),
               child: const Text(
                 'Login',
-                style: TextStyle(fontSize: 18, color: Colors.amber),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 30),
             ElevatedButton(
               onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.blue),
-              ),
+              style: AppButtonStyle.linkButton,
               child: const Text(
-                'Reset password',
-                style: TextStyle(fontSize: 18, color: Colors.amber),
+                'Reset password here',
+                style: TextStyle(fontSize: 18, ),
               ),
             ),
           ],
