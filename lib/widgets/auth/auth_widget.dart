@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Theme/app_button_style.dart';
+import 'package:movie_app/main_screen/main_screen_widget.dart';
 
 class AuthWidget extends StatefulWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -63,28 +64,30 @@ class _FormWidget extends StatefulWidget {
 }
 
 class __FormWidgetState extends State<_FormWidget> {
-
   final _loginTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   String? errorText = null;
 
-void _auth () {
-  final login = _loginTextController.text;
-  final password = _passwordTextController.text;
-  if (login.isEmpty || password.isEmpty) {
-    print('Error, login or password is empty');
-    return;
-  } else
-  print('Login: $login, password: $password');
-  setState(() {
-    errorText = 'Error, login or password is empty';
-  });
+  void _auth() {
+    final login = _loginTextController.text;
+    final password = _passwordTextController.text;
+    if (login == 'admin' && password == 'admin') {
+      errorText = null;
 
-}
+      final navigator = Navigator.of(context);
+      navigator.push(
+        MaterialPageRoute<void>(builder: (context) => MainScreenWidget()),
+      );
+    } else {
+      errorText = 'Error, login or password is incorrect';
+    }
 
-void _resetPassword () {
-  print('Print reset password');
-}
+    setState(() {});
+  }
+
+  void _resetPassword() {
+    print('Reset password');
+  }
 
   final TextStyle style = const TextStyle(
     fontFamily: 'Montserrat',
@@ -98,7 +101,7 @@ void _resetPassword () {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      
+
       children: [
         if (errorText != null) ...[
           Text(
@@ -146,7 +149,7 @@ void _resetPassword () {
               style: AppButtonStyle.linkButton,
               child: const Text(
                 'Reset password here',
-                style: TextStyle(fontSize: 18, ),
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ],
