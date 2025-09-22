@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/main_screen/main_screen_widget.dart';
 import 'package:movie_app/widgets/auth/auth_widget.dart';
 
 void main() {
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
         ),
         
       ),
-      home: AuthWidget(),
+      routes: {
+        '/auth': (context) => const AuthWidget(),
+        '/main_screen': (context) => const MainScreenWidget(),
+      },
+      initialRoute: '/auth',
     );
   }
 }
