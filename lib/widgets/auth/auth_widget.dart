@@ -75,9 +75,8 @@ class __FormWidgetState extends State<_FormWidget> {
       errorText = null;
 
       final navigator = Navigator.of(context);
-      navigator.push(
-        MaterialPageRoute<void>(builder: (context) => MainScreenWidget()),
-      );
+      navigator.pushNamed('/main_screen');
+      
     } else {
       errorText = 'Error, login or password is incorrect';
     }
