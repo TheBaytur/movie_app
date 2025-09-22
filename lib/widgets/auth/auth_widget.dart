@@ -66,6 +66,7 @@ class __FormWidgetState extends State<_FormWidget> {
 
   final _loginTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
+  String? errorText = null;
 
 void _auth () {
   final login = _loginTextController.text;
@@ -73,8 +74,12 @@ void _auth () {
   if (login.isEmpty || password.isEmpty) {
     print('Error, login or password is empty');
     return;
-  }
+  } else
   print('Login: $login, password: $password');
+  setState(() {
+    errorText = 'Error, login or password is empty';
+  });
+
 }
 
 void _resetPassword () {
@@ -93,7 +98,15 @@ void _resetPassword () {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      
       children: [
+        if (errorText != null) ...[
+          Text(
+            errorText!,
+            style: const TextStyle(color: Colors.red, fontSize: 17),
+          ),
+          const SizedBox(height: 20),
+        ],
         Text('Username', style: style),
         TextField(
           controller: _loginTextController,
