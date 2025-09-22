@@ -63,6 +63,15 @@ class _FormWidget extends StatefulWidget {
 }
 
 class __FormWidgetState extends State<_FormWidget> {
+
+void _auth () {
+  print('123');
+}
+
+void _resetPassword () {
+  print('Print reset password');
+}
+
   final TextStyle style = const TextStyle(
     fontFamily: 'Montserrat',
     fontSize: 16.0,
@@ -98,7 +107,7 @@ class __FormWidgetState extends State<_FormWidget> {
         Row(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: _auth,
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(Colors.blue),
               ),
@@ -109,7 +118,7 @@ class __FormWidgetState extends State<_FormWidget> {
             ),
             const SizedBox(width: 30),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: _resetPassword,
               style: AppButtonStyle.linkButton,
               child: const Text(
                 'Reset password here',
