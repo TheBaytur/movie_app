@@ -73,9 +73,9 @@ class __FormWidgetState extends State<_FormWidget> {
     final password = _passwordTextController.text;
     if (login == 'admin' && password == 'admin') {
       errorText = null;
-
-      final navigator = Navigator.of(context);
-      navigator.pushNamed('/main_screen');
+ 
+      //Navigator.of(context).pushNamed('/main_screen');
+      Navigator.of(context).pushReplacementNamed('/main_screen');
       
     } else {
       errorText = 'Error, login or password is incorrect';
