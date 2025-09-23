@@ -14,9 +14,12 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       appBar: AppBar(
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
-      body: const Center(
-        child: Text('Main screen'),
-      ),
+      body: Center(
+       child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        }, child: const Text('Press me')),
+      )
     );
   }
 }

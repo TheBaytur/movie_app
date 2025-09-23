@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/auth': (context) => const AuthWidget(),
-        '/main_screen': (context) => const MainScreenWidget(),
+        '/main_screen': (context) => const ExampleWidget(),
       },
       initialRoute: '/auth',
 
@@ -41,18 +41,21 @@ class ExampleWidget extends StatefulWidget {
   const ExampleWidget({super.key});
 
   @override
-  State<MainScreenWidget> createState() => _MainScreenWidgetState();
+  _MainScreenWidgetState createState() => _MainScreenWidgetState();
 }
 
-class _MainScreenWidgetState extends State<MainScreenWidget> {
+class _MainScreenWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
-      body: const Center(
-       child: ElevatedButton(onPressed: null, child: Text('Press me')),
+      body: Center(
+       child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        }, child: const Text('Press me')),
       )
     );
   }
