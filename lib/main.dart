@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainScreenWidget extends StatefulWidget {
-  const MainScreenWidget({super.key});
+class ExampleWidget extends StatefulWidget {
+  const ExampleWidget({super.key});
 
   @override
   State<MainScreenWidget> createState() => _MainScreenWidgetState();
@@ -51,7 +51,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       appBar: AppBar(
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
-      body: const Center(child: Text('Main screen')),
+      body: const Center(
+       child: ElevatedButton(onPressed: null, child: Text('Press me')),
+      )
     );
   }
 }
