@@ -12,6 +12,12 @@ class MainScreenWidget extends StatefulWidget {
 class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedTab = 1;
 
+  void onSelectedTab(int index) {
+    setState(() {
+      _selectedTab = index;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +32,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Films'),
         BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Serials'),
       ],
-      onTap: (index) {
-        setState(() {
-          _selectedTab = index;
-        });
-      },
+      onTap: onSelectedTab,
       ),
       
       body: Center(
