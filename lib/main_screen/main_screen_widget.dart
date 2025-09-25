@@ -17,9 +17,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
       bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
+        BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Films'),
+        BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Serials'),
       ]),
       body: Center(
        child: ElevatedButton(
