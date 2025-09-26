@@ -13,6 +13,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedTab = 1;
 
   void onSelectedTab(int index) {
+    if (_selectedTab == index) {
+      return;
+    }
     setState(() {
       _selectedTab = index;
     });
@@ -25,6 +28,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       appBar: AppBar(
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
+      body: Container(),
       bottomNavigationBar: BottomNavigationBar(
       currentIndex: _selectedTab,
         items: const [
@@ -35,12 +39,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       onTap: onSelectedTab,
       ),
       
-      body: Center(
-       child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        }, child: const Text('Press me')),
-      )
-    );
+      
+      );
   }
 }
