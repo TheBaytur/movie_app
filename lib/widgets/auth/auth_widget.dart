@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Theme/app_button_style.dart';
-import 'package:movie_app/main_screen/main_screen_widget.dart';
 
 //26
 
