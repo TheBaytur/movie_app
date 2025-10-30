@@ -5,6 +5,6 @@ import 'package:movie_app/resources/resources.dart';
 
 void main() {
   test('images assets test', () {
-    expect(File(Images.console).existsSync(), isTrue);
+    expect(File(AppImages.console).existsSync(), isTrue);
   });
 }
