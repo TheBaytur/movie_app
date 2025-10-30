@@ -16,7 +16,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   static const _widgetOptions = <Widget>[
     Text('News'),
-    MovieListWidget(), Text('Films'),
+    MovieListWidget(), 
     Text('Serials'),
   ];
 
