@@ -16,7 +16,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   static const _widgetOptions = <Widget>[
     Text('News'),
-    MovieListWidget(), 
+    MovieListWidget(),
     Text('Serials'),
   ];
 
@@ -40,16 +40,14 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         child: _widgetOptions.elementAt(_selectedTab),
       ),
       bottomNavigationBar: BottomNavigationBar(
-      currentIndex: _selectedTab,
+        currentIndex: _selectedTab,
         items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-        BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Films'),
-        BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Serials'),
-      ],
-      onTap: onSelectedTab,
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
+          BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Films'),
+          BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Serials'),
+        ],
+        onTap: onSelectedTab,
       ),
-      
-      
-      );
+    );
   }
 }

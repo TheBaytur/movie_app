@@ -18,7 +18,7 @@ class _AuthWidgetState extends State<AuthWidget> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: ListView(children: [_HeaderWidget()]),
+      body: ListView(children: const [_HeaderWidget()]),
     );
   }
 }
@@ -92,9 +92,6 @@ class __FormWidgetState extends State<_FormWidget> {
     fontSize: 16.0,
     color: Color(0xFF212519),
   );
-  final textFieldDecoration = const InputDecoration(
-    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-  );
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -134,7 +131,7 @@ class __FormWidgetState extends State<_FormWidget> {
             ElevatedButton(
               onPressed: _auth,
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.blue),
+                backgroundColor: MaterialStateProperty.all(Colors.blue),
               ),
               child: const Text(
                 'Login',
@@ -154,5 +151,12 @@ class __FormWidgetState extends State<_FormWidget> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _loginTextController.dispose();
+    _passwordTextController.dispose();
+    super.dispose();
   }
 }
