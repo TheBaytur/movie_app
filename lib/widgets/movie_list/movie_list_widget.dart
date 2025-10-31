@@ -23,6 +23,7 @@ class MovieListWidget extends StatelessWidget {
               ),
             ],
           ),
+          
           child:  Row(
             children: [
               Image(image: AssetImage(AppImages.console)),],
