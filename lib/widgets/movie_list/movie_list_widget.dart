@@ -12,22 +12,24 @@ class MovieListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return const Padding(
           padding:  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: DecoratedBox(decoration:   BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 4,
-                offset: Offset(0, 2),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
+                ],
               ),
-            ],
-          ),
-          
-          child:  Row(
-            children: [
-              Image(image: AssetImage(AppImages.console)),],
-          ),
+              child: Row(
+                children: [
+                  Image(image: AssetImage(AppImages.console)),],
+              ),
+            ),
           ),
         );
       },
