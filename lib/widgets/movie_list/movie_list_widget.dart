@@ -21,8 +21,8 @@ class MovieListWidget extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black12,
                     spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
+                    blurRadius: 8,
+                    offset: Offset(0, 5),
                   ),
                 ],
               ),

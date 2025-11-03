@@ -152,11 +152,4 @@ class __FormWidgetState extends State<_FormWidget> {
       ],
     );
   }
-
-  @override
-  void dispose() {
-    _loginTextController.dispose();
-    _passwordTextController.dispose();
-    super.dispose();
-  }
 }
