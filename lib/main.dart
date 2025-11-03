@@ -3,7 +3,7 @@ import 'package:movie_app/main_screen/main_screen_widget.dart';
 import 'package:movie_app/widgets/auth/auth_widget.dart';
 import 'package:movie_app/Theme/app_colors.dart';
 
-// 14.10
+// 3 nov 2023 - start app
 
 void main() {
   runApp(const MyApp());
