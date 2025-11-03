@@ -16,10 +16,11 @@ class MovieListWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(20)),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.white,
+                //color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
+                    spreadRadius: 2,
                     blurRadius: 4,
                     offset: Offset(0, 2),
                   ),
