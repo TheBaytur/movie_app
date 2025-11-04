@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/movie_list/movie_list_widget.dart';
+import '../widgets/news/news_list_widget.dart';
 
 // 14.10
 
@@ -15,9 +16,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedTab = 1;
 
   static const _widgetOptions = <Widget>[
-    Text('News'),
-    MovieListWidget(),
-    Text('Serials'),
+    const NewsListWidget(),
+    const MovieListWidget(),
+    const Text('Serials'),
   ];
 
   void onSelectedTab(int index) {

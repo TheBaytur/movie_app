@@ -1,79 +1,146 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/resources/resources.dart';
 
+class Movie {
+  final String title;
+  final String description;
+  final String releaseDate;
+  final String imageName;
+
+  const Movie({
+    required this.title,
+    required this.description,
+    required this.releaseDate,
+    required this.imageName,
+  });
+}
+
 class MovieListWidget extends StatelessWidget {
-  const MovieListWidget({super.key});
+  const MovieListWidget({super.key})
+      : _movies = const [
+          Movie(
+            imageName: AppImages.moviePlaceholder,
+            title: 'Inception',
+            description:
+                'A thief who steals corporate secrets through the use of dream-sharing technology.',
+            releaseDate: '2010-07-16',
+          ),
+          Movie(
+            imageName: AppImages.moviePlaceholder,
+            title: 'Inception',
+            description:
+                'A thief who steals corporate secrets through the use of dream-sharing technology.',
+            releaseDate: '2010-07-16',
+          ),
+          Movie(
+            imageName: AppImages.moviePlaceholder,
+            title: 'Inception',
+            description:
+                'A thief who steals corporate secrets through the use of dream-sharing technology.',
+            releaseDate: '2010-07-16',
+          ),
+          Movie(
+            imageName: AppImages.moviePlaceholder,
+            title: 'Inception',
+            description:
+                'A thief who steals corporate secrets through the use of dream-sharing technology.',
+            releaseDate: '2010-07-16',
+          ),
+          Movie(
+            imageName: AppImages.moviePlaceholder,
+            title: 'Inception',
+            description:
+                'A thief who steals corporate secrets through the use of dream-sharing technology.',
+            releaseDate: '2010-07-16',
+          ),
+        ];
+
+  final List<Movie> _movies;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: _movies.length,
       itemExtent: 163,
       itemBuilder: (context, index) {
+        final movie = _movies[index];
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Stack(
             children: [
-              Container(
-                
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black12.withOpacity(0.2)),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 2,
-                        blurRadius: 8,
-                        offset: Offset(0, 5),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12.withOpacity(0.2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
                       ),
-                    ],
-                  ),
-                  
-                  child: const Row(
-                    children: [
-                      Image(image: AssetImage(AppImages.console)),
-                      Expanded(
+                      child: Image.asset(
+                        movie.imageName,
+                        width: 95,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 16),
                             Text(
-                              'Movie Title',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              movie.title,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
-                              'Movie Description',
-                              style: TextStyle(color: Colors.grey),
+                              movie.description,
+                              style: const TextStyle(color: Colors.grey),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(height: 5),
-                            Text('2024-01-01', style: TextStyle(color: Colors.grey),),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 8),
                             Text(
-                              'Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
-                              maxLines: 2,
+                              movie.releaseDate,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              movie.description,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(width: 5),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(width: 16),
+                  ],
                 ),
               ),
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   onTap: () {
-                    print ('Movie item tapped: $index');
+                    print('Movie item tapped: $index');
                   },
                 ),
               ),
