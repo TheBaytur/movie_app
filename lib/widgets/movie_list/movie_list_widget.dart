@@ -32,20 +32,29 @@ class MovieListWidget extends StatelessWidget {
                 children: [
                   Image(image: AssetImage(AppImages.console)),
                   Expanded(
-                    child: Column (
-                      crossAxisAlignment:  CrossAxisAlignment.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      Text('Movie Title'),
-                      SizedBox(height: 8),
-                      Text('Movie Description'),
-                      SizedBox(height: 5),
-                      Text( 'Release Date'),
-                      SizedBox(height: 5),
-                      Text('Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],),
+                        SizedBox(height: 16),
+                        Text(
+                          'Movie Title',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Movie Description',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(height: 5),
+                        Text('Release Date'),
+                        SizedBox(height: 5),
+                        Text(
+                          'Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
