@@ -39,6 +39,7 @@ class MovieListWidget extends StatelessWidget {
                         Text(
                           'Movie Title',
                           style: TextStyle(fontWeight: FontWeight.bold),
+                          maxLines: 1,
                         ),
                         SizedBox(height: 8),
                         Text(
@@ -46,7 +47,7 @@ class MovieListWidget extends StatelessWidget {
                           style: TextStyle(color: Colors.grey),
                         ),
                         SizedBox(height: 5),
-                        Text('Release Date'),
+                        Text('2024-01-01', style: TextStyle(color: Colors.grey),),
                         SizedBox(height: 5),
                         Text(
                           'Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
@@ -56,6 +57,7 @@ class MovieListWidget extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(width: 5),
                 ],
               ),
             ),
