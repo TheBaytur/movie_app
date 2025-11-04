@@ -31,7 +31,7 @@ class MovieListWidget extends StatelessWidget {
               
               child: GestureDetector(
                 onTap: () {
-                  print('Movie item tapped');
+                  print('Movie item tapped at index $index');
                 },
                 child: const Row(
                   children: [
