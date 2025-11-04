@@ -28,37 +28,46 @@ class MovieListWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
-                children: [
-                  Image(image: AssetImage(AppImages.console)),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 16),
-                        Text(
-                          'Movie Title',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          maxLines: 1,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Movie Description',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        SizedBox(height: 5),
-                        Text('2024-01-01', style: TextStyle(color: Colors.grey),),
-                        SizedBox(height: 5),
-                        Text(
-                          'Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+              
+              child: GestureDetector(
+                onTap: () {
+                  print('Movie item tapped');
+                },
+                child: const Row(
+                  children: [
+                    Image(image: AssetImage(AppImages.console)),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 16),
+                          Text(
+                            'Movie Title',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Movie Description',
+                            style: TextStyle(color: Colors.grey),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(height: 5),
+                          Text('2024-01-01', style: TextStyle(color: Colors.grey),),
+                          SizedBox(height: 5),
+                          Text(
+                            'Opisanie filma fdfjsjdfnsjdfnsdfnsijdfnsijdnfisjdnfisjdfnisjnfijs',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 5),
-                ],
+                    SizedBox(width: 5),
+                  ],
+                ),
               ),
             ),
           ),
