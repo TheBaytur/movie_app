@@ -29,7 +29,7 @@ class MovieListWidget extends StatelessWidget {
                 ],
               ),
               
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {
                   print('Movie item tapped at index $index');
                 },
