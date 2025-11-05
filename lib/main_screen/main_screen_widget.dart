@@ -16,9 +16,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedTab = 1;
 
   static const _widgetOptions = <Widget>[
-    const NewsListWidget(),
-    const MovieListWidget(),
-    const Text('Serials'),
+     NewsListWidget(),
+     MovieListWidget(),
+     Text('Serials'),
   ];
 
   void onSelectedTab(int index) {
