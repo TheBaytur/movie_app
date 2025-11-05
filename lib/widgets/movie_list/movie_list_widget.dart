@@ -71,7 +71,7 @@ class MovieListWidget extends StatefulWidget {
       if (query.isNotEmpty) {
         _filteredMovies = _movies
             .where((Movie movie) =>
-                movie.title.contains( query) ||
+                movie.title.toLowerCase().contains( query.toLowerCase()) ||
                 movie.description.contains( query) )
             .toList();
       } else {
@@ -83,6 +83,7 @@ class MovieListWidget extends StatefulWidget {
       @override
       void initState() {
         super.initState();
+        _filteredMovies = _movies;
         _searchController.addListener(_searchMovies);
       }
 
