@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/resources/resources.dart';
 
 class Movie {
+  final int id;
   final String title;
   final String description;
   final String releaseDate;
   final String imageName;
 
   const Movie({
+    required this.id,
     required this.title,
     required this.description,
     required this.releaseDate,
@@ -16,84 +18,92 @@ class Movie {
 }
 
 class MovieListWidget extends StatefulWidget {
-
   const MovieListWidget({Key? key}) : super(key: key);
 
   @override
   _MovieListWidgetState createState() => _MovieListWidgetState();
 }
 
-    class _MovieListWidgetState extends State<MovieListWidget> {
-      final _movies = const [
-        Movie  (
-          imageName: AppImages.moviePlaceholder,
-          title: 'Inception',
-          description:
-              'A thief who steals corporate secrets through the use of dream-sharing technology.',
-          releaseDate: '2010-07-16',
-        ),
-        Movie(
-          imageName: AppImages.moviePlaceholder,
-          title: 'Inception',
-          description:
-              'A thief who steals corporate secrets through the use of dream-sharing technology.',
-          releaseDate: '2010-07-16',
-        ),
-        Movie(
-          imageName: AppImages.moviePlaceholder,
-          title: 'Inception',
-          description:
-              'A thief who steals corporate secrets through the use of dream-sharing technology.',
-          releaseDate: '2010-07-16',
-        ),
-        Movie(
-          imageName: AppImages.moviePlaceholder,
-          title: 'Inception',
-          description:
-              'A thief who steals corporate secrets through the use of dream-sharing technology.',
-          releaseDate: '2010-07-16',
-        ),
-        Movie(
-          imageName: AppImages.moviePlaceholder,
-          title: 'asd',
-          description:
-              'asd asdA thief who steals corporate secrets through the use of dream-sharing technology.',
-          releaseDate: '2010-07-16',
-        ),
-      ];
+class _MovieListWidgetState extends State<MovieListWidget> {
+  final _movies = const [
+    Movie(
+      id: 1,
+      imageName: AppImages.moviePlaceholder,
+      title: 'Inception',
+      description:
+          'A thief who steals corporate secrets through the use of dream-sharing technology.',
+      releaseDate: '2010-07-16',
+    ),
+    Movie(
+      id: 2,
+      imageName: AppImages.moviePlaceholder,
+      title: 'Inception',
+      description:
+          'A thief who steals corporate secrets through the use of dream-sharing technology.',
+      releaseDate: '2010-07-16',
+    ),
+    Movie(
+      id: 3,
+      imageName: AppImages.moviePlaceholder,
+      title: 'Inception',
+      description:
+          'A thief who steals corporate secrets through the use of dream-sharing technology.',
+      releaseDate: '2010-07-16',
+    ),
+    Movie(
+      id: 4,
+      imageName: AppImages.moviePlaceholder,
+      title: 'Inception',
+      description:
+          'A thief who steals corporate secrets through the use of dream-sharing technology.',
+      releaseDate: '2010-07-16',
+    ),
+    Movie(
+      id: 5,
+      imageName: AppImages.moviePlaceholder,
+      title: 'asd',
+      description:
+          'asd asdA thief who steals corporate secrets through the use of dream-sharing technology.',
+      releaseDate: '2010-07-16',
+    ),
+  ];
 
-      var _filteredMovies = <Movie>[];
+  var _filteredMovies = <Movie>[];
 
-      final _searchController = TextEditingController();
+  final _searchController = TextEditingController();
 
-    void _searchMovies () {
-      final query = _searchController.text;
-      if (query.isNotEmpty) {
-        _filteredMovies = _movies
-            .where((Movie movie) =>
-                movie.title.toLowerCase().contains( query.toLowerCase()) ||
-                movie.description.contains( query) )
-            .toList();
-      } else {
-        _filteredMovies = _movies;
-      }
-      setState(() {});
+  void _searchMovies() {
+    final query = _searchController.text;
+    if (query.isNotEmpty) {
+      _filteredMovies =
+          _movies
+              .where(
+                (Movie movie) =>
+                    movie.title.toLowerCase().contains(query.toLowerCase()) ||
+                    movie.description.contains(query),
+              )
+              .toList();
+    } else {
+      _filteredMovies = _movies;
     }
+    setState(() {});
+  }
 
-      @override
-      void initState() {
-        super.initState();
+  @override
+  void initState() {
+    super.initState();
 
-        _filteredMovies = _movies;
-        _searchController.addListener(_searchMovies);
-      }
+    _filteredMovies = _movies;
+    _searchController.addListener(_searchMovies);
+  }
 
-      void _onMovieTap(int index) {
-      }
-
-
-
-  
+  void _onMovieTap(int index) {
+    final id = _movies[index].id;
+    Navigator.of(context).pushNamed(
+      '/main_screen/movie_details', arguments: id
+      //arguments: _filteredMovies[index],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
