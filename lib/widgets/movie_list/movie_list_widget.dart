@@ -83,9 +83,12 @@ class MovieListWidget extends StatefulWidget {
       @override
       void initState() {
         super.initState();
+
         _filteredMovies = _movies;
         _searchController.addListener(_searchMovies);
       }
+
+      
 
 
   

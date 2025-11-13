@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/auth': (context) => const AuthWidget(),
         '/main_screen': (context) => const MainScreenWidget(),
+        '/main_screen/movie_details': (context) => const MainScreenWidget(),
       },
       initialRoute: '/auth',
     );
