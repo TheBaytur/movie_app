@@ -11,6 +11,10 @@ class MovieDetailsWidget extends StatefulWidget {
 class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return  Scaffold(
+      appBar: AppBar(
+        title: const Text('Inception', style: TextStyle(color: Colors.white)),
+      ),
+    );
   }
 }
