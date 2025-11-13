@@ -13,7 +13,7 @@ class MainScreenWidget extends StatefulWidget {
 }
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
-  int _selectedTab = 1;
+  int _selectedTab = 0;
 
   
 
@@ -33,8 +33,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       appBar: AppBar(
         title: const Text('TMDB', style: TextStyle(color: Colors.white)),
       ),
-      body: const IndexedStack(
-        children: [
+      body:  IndexedStack(
+        index: _selectedTab,
+        children: const [
         NewsListWidget(),
         MovieListWidget(),
         Text('Serials'),
