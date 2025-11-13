@@ -88,7 +88,9 @@ class MovieListWidget extends StatefulWidget {
         _searchController.addListener(_searchMovies);
       }
 
-      
+      void _onMovieTap(int index) {
+      }
+
 
 
   
@@ -190,9 +192,7 @@ class MovieListWidget extends StatefulWidget {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      onTap: () {
-                        print('Movie item tapped: $index');
-                      },
+                      onTap: () => _onMovieTap(index),
                     ),
                   ),
                 ],
