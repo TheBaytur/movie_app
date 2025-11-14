@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/widgets/movie_details/movie_details_main_info_widget.dart';
 
 class MovieDetailsWidget extends StatefulWidget {
   final int movieId;
@@ -14,6 +15,11 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Inception', style: TextStyle(color: Colors.white)),
+      ),
+      body: ListView(
+        children: const [
+          MovieDetailsMainInfoWidget(),
+        ],
       ),
     );
   }
