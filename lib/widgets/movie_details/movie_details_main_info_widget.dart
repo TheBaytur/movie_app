@@ -99,7 +99,14 @@ class _MovieNameWidget extends StatelessWidget {
   }
 }
 
+class _ScoreWidget extends StatelessWidget {
+  const _ScoreWidget({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
 
 class _SummaryWidget extends StatelessWidget {
   const _SummaryWidget({Key? key}) : super(key: key);
