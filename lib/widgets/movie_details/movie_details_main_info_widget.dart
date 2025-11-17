@@ -13,6 +13,10 @@ class MovieDetailsMainInfoWidget extends StatelessWidget {
         SizedBox(height: 20),
         Padding(padding: EdgeInsets.all(10.0), child: _MovieNameWidget()),
         Padding(
+          padding: EdgeInsets.symmetric(horizontal: 100),
+          child: _ScoreWidget(),
+        ),
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 80),
           child: _SummaryWidget(),
         ),
@@ -73,11 +77,13 @@ class _MovieNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      
       maxLines: 3,
       textAlign: TextAlign.center,
       text: const TextSpan(
         children: [
           TextSpan(
+            
             text: 'White Scar ',
             style: TextStyle(
               fontSize: 17,
@@ -104,7 +110,30 @@ class _ScoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Row(
+      
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.star, color: Colors.amber),
+        SizedBox(width: 5),
+        Text(
+          '8.8',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Colors.white60,
+          ),
+        ),
+        Text(' User Score',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Colors.white60,
+            )),
+
+      
+      ],
+    );
   }
 }
 
