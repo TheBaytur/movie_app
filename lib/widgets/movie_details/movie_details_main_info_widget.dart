@@ -50,7 +50,7 @@ class _MovieNameWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w400,
-              color: Colors.black54,
+              color: Colors.grey,
             ),
           ),
         ],
