@@ -16,10 +16,13 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
       appBar: AppBar(
         title: const Text('Inception', style: TextStyle(color: Colors.white)),
       ),
-      body: ListView(
-        children: const [
-          MovieDetailsMainInfoWidget(),
-        ],
+      body: ColoredBox(
+        color: const Color.fromRGBO (24, 23 , 27, 1.0),
+        child: ListView(
+          children: const [
+            MovieDetailsMainInfoWidget(),
+          ],
+        ),
       ),
     );
   }

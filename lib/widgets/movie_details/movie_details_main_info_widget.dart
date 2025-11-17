@@ -11,6 +11,7 @@ class MovieDetailsMainInfoWidget extends StatelessWidget {
         _TopPosterWidget(),
         SizedBox(height: 20),
         _MovieNameWidget(),
+        _SummaryWidget()
       ],
     );
   }
@@ -35,20 +36,22 @@ class _MovieNameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      maxLines: 3,
+      textAlign: TextAlign.center,
       text: const TextSpan(
         children: [
           TextSpan(
             text: 'Inception ',
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 17,
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
           TextSpan(
             text: '(2010)',
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
               color: Colors.grey,
             ),
@@ -57,5 +60,14 @@ class _MovieNameWidget extends StatelessWidget {
       ),
       
     );
+  }
+}
+
+class _SummaryWidget extends StatelessWidget {
+  const _SummaryWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
