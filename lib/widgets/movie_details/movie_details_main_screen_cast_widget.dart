@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/resources/resources.dart';
 
 class MovieDetailsMainScreenCastWidget extends StatelessWidget {
   const MovieDetailsMainScreenCastWidget({super.key});
@@ -26,14 +27,27 @@ class MovieDetailsMainScreenCastWidget extends StatelessWidget {
               itemExtent: 120,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Container(
-                  width: 100,
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                  color: Colors.grey[300],
-                  child: Center(
-                    child: Text(
-                      'Actor ${index + 1}',
-                      style: const TextStyle(color: Colors.black),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      children: [
+                        const Image (image: AssetImage(AppImages.topHeaderSubImage),
+                       
+                       width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,  
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Actor ${index + 1}',
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      ],
                     ),
                   ),
                 );
