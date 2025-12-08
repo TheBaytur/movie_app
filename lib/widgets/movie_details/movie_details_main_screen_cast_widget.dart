@@ -10,17 +10,21 @@ class MovieDetailsMainScreenCastWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
-          Padding(padding: const  EdgeInsets.all(16.0),
+          const Padding(padding:   EdgeInsets.all(16.0),
             child: Text(
             'Series Cast',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
           ),           
           SizedBox(
-            height: 150,
+            height: 200,
+            child: Scrollbar(
+              thumbVisibility: true,
             child: ListView.builder(
-              scrollDirection: Axis.horizontal,
+              
               itemCount: 10,
+              itemExtent: 120,
+              scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
                   width: 100,
@@ -29,19 +33,21 @@ class MovieDetailsMainScreenCastWidget extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Actor ${index + 1}',
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                 );
               },
             ),
           ),
+          ),
           TextButton(
             onPressed: () {
               // Handle "See All" button press
             },
-            child: Text('See All', style: TextStyle(color: Colors.blue)),
+            child: const Text('See All', style: TextStyle(color: Colors.blue)),
           ),
+          
         ],
       ),
     );
