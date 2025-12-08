@@ -8,14 +8,39 @@ class MovieDetailsMainScreenCastWidget extends StatelessWidget {
     return ColoredBox(
       color: Colors.white,
       child: Column(
-        children: [
-          const Text(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:  [
+          Padding(padding: const  EdgeInsets.all(16.0),
+            child: Text(
             'Series Cast',
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
+          ),           
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 100,
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                  color: Colors.grey[300],
+                  child: Center(
+                    child: Text(
+                      'Actor ${index + 1}',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           TextButton(
-            onPressed: () {},
-            child: const Text('See All', style: TextStyle(color: Colors.blue)),
+            onPressed: () {
+              // Handle "See All" button press
+            },
+            child: Text('See All', style: TextStyle(color: Colors.blue)),
           ),
         ],
       ),
