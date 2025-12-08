@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/resources/resources.dart';
 
+
 class MovieDetailsMainInfoWidget extends StatelessWidget {
   const MovieDetailsMainInfoWidget({Key? key}) : super(key: key);
 
