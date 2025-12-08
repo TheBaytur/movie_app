@@ -5,6 +5,20 @@ class MovieDetailsMainScreenCastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ColoredBox(
+      color: Colors.white,
+      child: Column(
+        children: [
+          const Text(
+            'Series Cast',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text('See All', style: TextStyle(color: Colors.blue)),
+          ),
+        ],
+      ),
+    );
   }
 }
