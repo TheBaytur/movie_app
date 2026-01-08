@@ -33,14 +33,22 @@ class MyApp extends StatelessWidget {
         '/main_screen/movie_details': (context) {
           final arguments = ModalRoute.of(context)?.settings.arguments;
           if (arguments is! int) {
-            throw Exception('Movie id is required');
+            // Show a lightweight error screen instead of throwing so the app does not freeze.
+            return const Scaffold(
+              body: Center(
+                child: Text(
+                  'Movie id is required',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            );
           }
           final id = arguments;
-          return MovieDetailsWidget(movieId: id);},
+          return MovieDetailsWidget(movieId: id);
+        },
       },
       initialRoute: '/auth',
     );
   }
 }
-
 
