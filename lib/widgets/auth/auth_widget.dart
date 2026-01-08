@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/Theme/app_button_style.dart';
 
 class AuthWidget extends StatefulWidget {
-  const AuthWidget({Key? key}) : super(key: key);
+  const AuthWidget({super.key});
 
   @override
   State<AuthWidget> createState() => _AuthWidgetState();
@@ -24,7 +24,7 @@ class _AuthWidgetState extends State<AuthWidget> {
 }
 
 class _HeaderWidget extends StatelessWidget {
-  const _HeaderWidget({Key? key}) : super(key: key);
+  const _HeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _HeaderWidget extends StatelessWidget {
 }
 
 class _FormWidget extends StatefulWidget {
-  const _FormWidget({super.key});
+  const _FormWidget();
 
   @override
   State<_FormWidget> createState() => __FormWidgetState();
@@ -65,7 +65,7 @@ class _FormWidget extends StatefulWidget {
 class __FormWidgetState extends State<_FormWidget> {
   final _loginTextController = TextEditingController(text: "admin");
   final _passwordTextController = TextEditingController(text: 'admin');
-  String? errorText = null;
+  String? errorText;
 
   void _auth() {
     final login = _loginTextController.text;
@@ -131,7 +131,7 @@ class __FormWidgetState extends State<_FormWidget> {
             ElevatedButton(
               onPressed: _auth,
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue),
+                backgroundColor: WidgetStateProperty.all(Colors.blue),
               ),
               child: const Text(
                 'Login',

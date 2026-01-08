@@ -3,7 +3,7 @@ import 'package:movie_app/resources/resources.dart';
 
 
 class MovieDetailsMainInfoWidget extends StatelessWidget {
-  const MovieDetailsMainInfoWidget({Key? key}) : super(key: key);
+  const MovieDetailsMainInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class MovieDetailsMainInfoWidget extends StatelessWidget {
 }
 
 class _DescriptionWidget extends StatelessWidget {
-  const _DescriptionWidget({super.key});
+  const _DescriptionWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _DescriptionWidget extends StatelessWidget {
 }
 
 class _OverviewWidget extends StatelessWidget {
-  const _OverviewWidget({super.key});
+  const _OverviewWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _OverviewWidget extends StatelessWidget {
 }
 
 class _TopPosterWidget extends StatelessWidget {
-  const _TopPosterWidget({Key? key}) : super(key: key);
+  const _TopPosterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _TopPosterWidget extends StatelessWidget {
 }
 
 class _MovieNameWidget extends StatelessWidget {
-  const _MovieNameWidget({Key? key}) : super(key: key);
+  const _MovieNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class _MovieNameWidget extends StatelessWidget {
 }
 
 class _ScoreWidget extends StatelessWidget {
-  const _ScoreWidget({super.key});
+  const _ScoreWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class _ScoreWidget extends StatelessWidget {
 }
 
 class _SummaryWidget extends StatelessWidget {
-  const _SummaryWidget({Key? key}) : super(key: key);
+  const _SummaryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +157,7 @@ class _SummaryWidget extends StatelessWidget {
 }
 
 class _PeopleWidget extends StatelessWidget {
-  const _PeopleWidget({Key? key}) : super(key: key);
+  const _PeopleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

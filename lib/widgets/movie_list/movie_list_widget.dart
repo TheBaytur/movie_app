@@ -18,7 +18,7 @@ class Movie {
 }
 
 class MovieListWidget extends StatefulWidget {
-  const MovieListWidget({Key? key}) : super(key: key);
+  const MovieListWidget({super.key});
 
   @override
   _MovieListWidgetState createState() => _MovieListWidgetState();
