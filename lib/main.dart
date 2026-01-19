@@ -5,7 +5,7 @@ import 'package:movie_app/widgets/auth/auth_widget.dart';
 import 'package:movie_app/Theme/app_colors.dart';
 import 'package:movie_app/widgets/movie_details/movie_details_widget.dart';
 
-// 3 nov 2023 - start app
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
