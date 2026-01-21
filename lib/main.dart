@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: mainNavigation.routes,
-      initialRoute: '/auth',
+      initialRoute: mainNavigation.initialRoute(false),
+      onGenerateRoute: mainNavigation.onGenerateRoute
     );
   }
 }

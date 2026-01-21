@@ -12,30 +12,49 @@ abstract class MainNavigationRoutes {
 }
 
 class MainNavigation {
-  final routes = <String, Widget Function(BuildContext)> {
-    '/auth': (context) =>  AuthProvider(
-          model: AuthModel(),
-          child: const AuthWidget(),
-        ),
-        '/main_screen': (context) => const MainScreenWidget(
-          
-        ),
-        '/main_screen/movie_details': (context) {
-          final arguments = ModalRoute.of(context)?.settings.arguments;
-          if (arguments is! int) {
-            // Show a lightweight error screen instead of throwing so the app does not freeze.
-            return const Scaffold(
-              body: Center(
-                child: Text(
-                  'Movie id is required',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            );
-          }
-          final id = arguments;
-          return MovieDetailsWidget(movieId: id);
-        },
+  String initialRoute(bool isAuth) =>
+      isAuth ? MainNavigationRoutes.mainScreen : MainNavigationRoutes.auth;
+  final routes = <String, Widget Function(BuildContext)>{
+    '/auth':
+        (context) =>
+            AuthProvider(model: AuthModel(), child: const AuthWidget()),
+    '/main_screen': (context) => const MainScreenWidget(),
+    '/main_screen/movie_details': (context) {
+      final arguments = ModalRoute.of(context)?.settings.arguments;
+      if (arguments is! int) {
+        // Show a lightweight error screen instead of throwing so the app does not freeze.
+        return const Scaffold(
+          body: Center(
+            child: Text(
+              'Movie id is required',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      }
+      final id = arguments;
+      return MovieDetailsWidget(movieId: id);
+    },
   };
-  
+
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    final builder = routes[settings.name];
+    if (builder != null) {
+      return MaterialPageRoute(
+        builder: (context) => builder(context),
+        settings: settings,
+      );
+    }
+    return MaterialPageRoute(
+      builder: (context) => const Scaffold(
+        body: Center(
+          child: Text(
+            'Route not found',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+      settings: settings,
+    );
+  }
 }
