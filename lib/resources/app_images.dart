@@ -12,4 +12,5 @@ class AppImages {
   static const String recomendation = 'assets/images/console.png';
   static const String topHeaderSubImage = 'assets/images/face.png';
   static const String topHeader = 'assets/images/soldier.png';
+  static const String tvshowPlaceholder = 'assets/images/tvshow_placeholder.png';
 }
