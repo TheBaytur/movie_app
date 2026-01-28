@@ -1,5 +1,7 @@
 import 'package:movie_app/domain/data_providers/session_data_provider.dart';
 
+// 28
+
 class MyAppModel {
   final _sessionDataProvider = SessionDataProvider();
   var _isAuth = false;
