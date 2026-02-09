@@ -55,7 +55,7 @@ class Provider<Model> extends InheritedWidget {
 
   @override
   bool updateShouldNotify( Provider oldWidget) {
-    return true;
+    return model != oldWidget.model;
   }
 }
   
