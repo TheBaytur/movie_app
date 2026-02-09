@@ -3,8 +3,6 @@ import 'package:movie_app/Theme/app_button_style.dart';
 import 'package:movie_app/library/widgets/inherited/provider.dart';
 import 'package:movie_app/widgets/auth/auth_model.dart';
 
-// pedantic ignore: use_key_in_widget_constructors123
-
 class AuthWidget extends StatefulWidget {
   const AuthWidget({super.key});
 

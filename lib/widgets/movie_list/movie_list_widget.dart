@@ -38,7 +38,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     Movie(
       id: 2,
       imageName: AppImages.moviePlaceholder,
-      title: 'Inception',
+      title: 'Not Inception',
       description:
           'A thief who steals corporate secrets through the use of dream-sharing technology.',
       releaseDate: '2010-07-16',
@@ -46,7 +46,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     Movie(
       id: 3,
       imageName: AppImages.moviePlaceholder,
-      title: 'Inception',
+      title: 'Space Wolf',
       description:
           'A thief who steals corporate secrets through the use of dream-sharing technology.',
       releaseDate: '2010-07-16',
