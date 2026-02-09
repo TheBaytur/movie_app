@@ -59,9 +59,16 @@ class _TWShowListWidgetState extends State<TWShowListWidget> {
     TVShow(
       id: 5,
       imageName: AppImages.tvshowPlaceholder,
-      title: 'Ходячие мертвицы',
+      title: 'Walking dead',
       time: 'April  7, 2021',
       description: 'Washed-up MMA fighter Cole Young, unaware of his heritage',
+    ),
+    TVShow(
+      id: 5,
+      imageName: AppImages.tvshowPlaceholder,
+      title: 'Some bullshit here',
+      time: 'Yep you got me right',
+      description: 'Here just here some bullshit description for this show',
     ),
     TVShow(
       id: 6,
@@ -256,7 +263,7 @@ class _TWShowListWidgetState extends State<TWShowListWidget> {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              labelText: 'Поиск',
+              labelText: 'Search',
               filled: true,
               fillColor: Colors.white.withAlpha(235),
               border: const OutlineInputBorder(),
