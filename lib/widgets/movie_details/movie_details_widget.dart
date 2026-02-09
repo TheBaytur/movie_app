@@ -15,7 +15,7 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Inception', style: TextStyle(color: Colors.white)),
+        title: const Text('Inception1', style: TextStyle(color: Colors.white)),
       ),
       body: ColoredBox(
         color: const Color.fromRGBO (24, 23 , 27, 1.0),
