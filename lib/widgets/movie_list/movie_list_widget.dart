@@ -102,7 +102,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     final id = _filteredMovies[index].id;
     Navigator.of(context).pushNamed(
       MainNavigationRouteNames.movieDetails, arguments: id
-      //arguments: _filteredMovies[index],
+      
     );
   }
 
@@ -215,7 +215,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         TextField(
           controller: _searchController,
           decoration: InputDecoration(
-            hintText: 'Search movies...',
+            hintText: 'Search movies',
             prefixIcon: const Icon(Icons.search),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
