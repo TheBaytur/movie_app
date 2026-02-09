@@ -42,15 +42,15 @@ class Provider<Model> extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<Provider<Model>>();
   }
 
-  static Model? watch<Model extends ChangeNotifier>(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<NotifierProvider<Model>>()
+  static Model? watch<Model>(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Provider<Model>>()
     ?.model;
   }
 
-  static Model? read<Model extends ChangeNotifier>(BuildContext context) {
+  static Model? read<Model>(BuildContext context) {
     final widget =
-        context.getElementForInheritedWidgetOfExactType<NotifierProvider<Model>>()?.widget;
-    return widget is NotifierProvider<Model> ? widget.model : null;
+        context.getElementForInheritedWidgetOfExactType<Provider<Model>>()?.widget;
+    return widget is Provider<Model> ? widget.model : null;
   }
 
   @override
