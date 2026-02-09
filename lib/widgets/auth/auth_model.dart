@@ -1,8 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:movie_app/domain/data_providers/session_data_provider.dart';
 import 'package:movie_app/ui/navigation/main_navigation.dart';
+
+//mon9 feb
 
 class AuthModel extends ChangeNotifier {
   final _sessionDataProvider = SessionDataProvider();
