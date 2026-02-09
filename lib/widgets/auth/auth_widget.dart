@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Theme/app_button_style.dart';
+import 'package:movie_app/library/widgets/inherited/provider.dart';
 import 'package:movie_app/widgets/auth/auth_model.dart';
 
 // pedantic ignore: use_key_in_widget_constructors123
@@ -63,7 +64,7 @@ class _FormWidget extends StatelessWidget {
 
     @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.read(context)?.model;
+    final model = NotifierProvider.read<AuthModel>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -122,7 +123,7 @@ class _AuthButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = AuthProvider.watch(context)?.model;
+    final model = NotifierProvider.watch<AuthModel>(context);
     const color = Colors.blue;
     final onPressed = model?.canStartAuth == true ? () => model?.auth(context) : null;
     return ElevatedButton(
@@ -143,7 +144,8 @@ class _ErrorMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorMessage = AuthProvider.watch(context)?.model.errorMessage;
+    final errorMessage = 
+    NotifierProvider.watch<AuthModel>(context)?.errorMessage;
     if (errorMessage == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),

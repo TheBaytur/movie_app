@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Theme/app_colors.dart';
+import 'package:movie_app/library/widgets/inherited/provider.dart';
 import 'package:movie_app/main_screen/main_screen_widget.dart';
 import 'package:movie_app/widgets/auth/auth_model.dart';
 import 'package:movie_app/widgets/auth/auth_widget.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/auth': (context) => AuthProvider(
+        '/auth': (context) => NotifierProvider(
               model: AuthModel(),
               child: const AuthWidget(),
             ),

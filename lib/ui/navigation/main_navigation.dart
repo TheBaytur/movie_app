@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movie_app/library/widgets/inherited/provider.dart';
 import 'package:movie_app/main_screen/main_screen_widget.dart';
 import 'package:movie_app/widgets/auth/auth_model.dart';
 import 'package:movie_app/widgets/auth/auth_widget.dart';
@@ -18,7 +19,7 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     '/auth':
         (context) =>
-            AuthProvider(model: AuthModel(), child: const AuthWidget()),
+            NotifierProvider(model: AuthModel(), child: const AuthWidget()),
     '/main_screen': (context) => const MainScreenWidget(),
     
   };
