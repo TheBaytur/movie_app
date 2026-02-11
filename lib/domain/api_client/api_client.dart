@@ -3,13 +3,13 @@ import 'dart:io';
 
 enum ApiClientError {
   network,
-  wrongCredentials,
-  unknown,
+  auth,
+  other,
 }
 class ApiClientException implements Exception {
-  final ApiClientError error;
+  final ApiClientError type;
 
-  ApiClientException(this.error);
+  ApiClientException(this.type);
 }
 
 class ApiClient {
