@@ -1,15 +1,16 @@
 import 'dart:convert';
+import 'dart:developer' as developer;
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
-import 'package:movie_app/domain/api_client/api_client.dart';
-
-import 'api_client.dart';
+const _pauseOnJsonForDebugger = true;
 
 enum ApiClientExceptionType {
   network,
   auth,
   other,
 }
+
 class ApiClientException implements Exception {
   final ApiClientExceptionType type;
 
@@ -51,15 +52,14 @@ class ApiClient {
       <String, dynamic>{'api_key': _apiKey},
     );
     try {
-    final request = await _client.getUrl(url);
-    final response = await request.close();
-    final json = (await response.jsonDecode()) as Map<String, dynamic>;
-    final token = json['request_token'] as String;
-    return token;
+      final request = await _client.getUrl(url);
+      final response = await request.close();
+      final json = await response.readJson('token/new');
+      final token = json['request_token'] as String;
+      return token;
     } on SocketException {
       throw ApiClientException(ApiClientExceptionType.network);
     }
-    
   }
 
   Future<String> _validateUser({
@@ -81,7 +81,7 @@ class ApiClient {
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
     final response = await request.close();
-    final json = (await response.jsonDecode()) as Map<String, dynamic>;
+    final json = await response.readJson('validate_with_login');
 
     final token = json['request_token'] as String;
     return token;
@@ -102,7 +102,7 @@ class ApiClient {
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
     final response = await request.close();
-    final json = (await response.jsonDecode()) as Map<String, dynamic>;
+    final json = await response.readJson('session/new');
 
     final sessionId = json['session_id'] as String;
     return sessionId;
@@ -110,10 +110,18 @@ class ApiClient {
 }
 
 extension HttpClientResponseJsonDecode on HttpClientResponse {
-  Future<dynamic> jsonDecode() async {
-    return transform(utf8.decoder)
-        .toList()
-        .then((value) => value.join())
-        .then<dynamic>((v) => json.decode(v));
+  Future<Map<String, dynamic>> readJson(String label) async {
+    final body = await transform(utf8.decoder).join();
+    final decodedJson = json.decode(body) as Map<String, dynamic>;
+    final prettyJson = const JsonEncoder.withIndent('  ').convert(decodedJson);
+    developer.log('statusCode=$statusCode', name: 'ApiClient/$label');
+    developer.log('body=$body', name: 'ApiClient/$label');
+    developer.log('json=$prettyJson', name: 'ApiClient/$label');
+    if (kDebugMode && _pauseOnJsonForDebugger) {
+      developer.debugger(
+        message: 'Inspect body/decodedJson/prettyJson in Variables',
+      );
+    }
+    return decodedJson;
   }
 }
