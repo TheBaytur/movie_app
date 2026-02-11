@@ -1,13 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-enum ApiClientError {
+import 'package:movie_app/domain/api_client/api_client.dart';
+
+import 'api_client.dart';
+
+enum ApiClientExceptionType {
   network,
   auth,
   other,
 }
 class ApiClientException implements Exception {
-  final ApiClientError type;
+  final ApiClientExceptionType type;
 
   ApiClientException(this.type);
 }
@@ -46,11 +50,16 @@ class ApiClient {
       '/authentication/token/new',
       <String, dynamic>{'api_key': _apiKey},
     );
+    try {
     final request = await _client.getUrl(url);
     final response = await request.close();
     final json = (await response.jsonDecode()) as Map<String, dynamic>;
     final token = json['request_token'] as String;
     return token;
+    } on SocketException {
+      throw ApiClientException(ApiClientExceptionType.network);
+    }
+    
   }
 
   Future<String> _validateUser({
