@@ -54,9 +54,9 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     Movie(
       id: 4,
       imageName: AppImages.moviePlaceholder,
-      title: 'Inception',
+      title: 'White Scar',
       description:
-          'A thief who steals corporate secrets through the use of dream-sharing technology.',
+          'Jaghatai stop banging Drukhari chiks and start banging some normal human chicks',
       releaseDate: '2010-07-16',
     ),
     Movie(

@@ -1,6 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+enum ApiClientError {
+  network,
+  wrongCredentials,
+  unknown,
+}
+class ApiClientException implements Exception {
+  final ApiClientError error;
+
+  ApiClientException(this.error);
+}
+
 class ApiClient {
   final _client = HttpClient();
   static const _host = 'https://api.themoviedb.org/3';
