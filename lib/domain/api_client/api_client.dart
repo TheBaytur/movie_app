@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 
 const _pauseOnJsonForDebugger = true;
 
+// baklash: https://api.themoviedb.org/3/authentication/token/new?api_key=0a2a46b5593
+
 enum ApiClientExceptionType {
   network,
   auth,
