@@ -7,7 +7,7 @@ import 'package:movie_app/widgets/auth/auth_widget.dart';
 import 'package:movie_app/widgets/movie_details/movie_details_widget.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           if (arguments is int) {
             return MovieDetailsWidget(movieId: arguments);
           } else {
-            return MovieDetailsWidget(movieId: 0);
+            return const MovieDetailsWidget(movieId: 0);
           }
         },
       },

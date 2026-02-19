@@ -6,13 +6,11 @@ class NotifierProvider<Model extends ChangeNotifier> extends InheritedNotifier {
   final Model model;
 
   const NotifierProvider({
-    Key? key,
+    super.key,
     required this.model,
-    required Widget child,
+    required super.child,
   }) : super(
-          key: key,
           notifier: model,
-          child: child,
         );
 
   static Model? watch<Model extends ChangeNotifier>(BuildContext context) {
@@ -31,12 +29,11 @@ class Provider<Model> extends InheritedWidget {
   final Model model;
   
   const Provider({
-    Key? key, 
+    super.key, 
     required this.model,
-   required Widget child
+   required super.child
    }) : super(
-    key: key, 
-    child: child);
+   );
 
   
 
@@ -56,7 +53,7 @@ class Provider<Model> extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify( Provider oldWidget) {
+  bool updateShouldNotify(Provider<Model> oldWidget) {
     return model != oldWidget.model;
   }
 }

@@ -1,11 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:developer' as developer;
 import 'dart:io';
-import 'package:flutter/foundation.dart';
-
-const _pauseOnJsonForDebugger = true;
-
-// baklash: https://api.themoviedb.org/3/authentication/token/new?api_key=0a2a46b5593
 
 enum ApiClientExceptionType {
   network,
@@ -13,30 +8,70 @@ enum ApiClientExceptionType {
   other,
 }
 
-class ApiClientException implements Exception {
-  final ApiClientExceptionType type;
+class ApiClientAuthResult {
+  final String? sessionId;
+  final ApiClientExceptionType? errorType;
+  final String? errorMessage;
 
-  ApiClientException(this.type);
+  bool get isSuccess => sessionId != null && sessionId!.isNotEmpty;
+
+  const ApiClientAuthResult.success(this.sessionId)
+      : errorType = null,
+        errorMessage = null;
+  const ApiClientAuthResult.failure(this.errorType, {this.errorMessage})
+      : sessionId = null;
+}
+
+class _ApiStepResult<T> {
+  final T? value;
+  final ApiClientExceptionType? errorType;
+  final String? errorMessage;
+
+  bool get isSuccess => value != null;
+
+  const _ApiStepResult.success(this.value)
+      : errorType = null,
+        errorMessage = null;
+  const _ApiStepResult.failure(this.errorType, {this.errorMessage})
+      : value = null;
 }
 
 class ApiClient {
   final _client = HttpClient();
   static const _host = 'https://api.themoviedb.org/3';
-  static const _imageUrl = 'https://image.tmdb.org/t/p/w500';
   static const _apiKey = '0a2a46b5593a0978cc8e87ba34037430';
+  static const _requestTimeout = Duration(seconds: 15);
 
-  Future<String> auth({
+  Future<ApiClientAuthResult> auth({
     required String username,
     required String password,
   }) async {
-    final token = await _makeToken();
-    final validToken = await _validateUser(
+    final tokenResult = await _makeToken();
+    if (!tokenResult.isSuccess) {
+      return ApiClientAuthResult.failure(
+        tokenResult.errorType,
+        errorMessage: tokenResult.errorMessage,
+      );
+    }
+    final validTokenResult = await _validateUser(
       username: username,
       password: password,
-      requestToken: token,
+      requestToken: tokenResult.value!,
     );
-    final sessionId = await _makeSession(requestToken: validToken);
-    return sessionId;
+    if (!validTokenResult.isSuccess) {
+      return ApiClientAuthResult.failure(
+        validTokenResult.errorType,
+        errorMessage: validTokenResult.errorMessage,
+      );
+    }
+    final sessionResult = await _makeSession(requestToken: validTokenResult.value!);
+    if (!sessionResult.isSuccess) {
+      return ApiClientAuthResult.failure(
+        sessionResult.errorType,
+        errorMessage: sessionResult.errorMessage,
+      );
+    }
+    return ApiClientAuthResult.success(sessionResult.value!);
   }
 
   Uri _makeUri(String path, [Map<String, dynamic>? parameters]) {
@@ -48,23 +83,48 @@ class ApiClient {
     }
   }
 
-  Future<String> _makeToken() async {
+  Future<_ApiStepResult<String>> _makeToken() async {
     final url = _makeUri(
       '/authentication/token/new',
       <String, dynamic>{'api_key': _apiKey},
     );
     try {
-      final request = await _client.getUrl(url);
-      final response = await request.close();
-      final json = await response.readJson('token/new');
-      final token = json['request_token'] as String;
-      return token;
+      final request = await _client.getUrl(url).timeout(_requestTimeout);
+      final response = await request.close().timeout(_requestTimeout);
+      final responseMap = await response.readMap();
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.other,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      final token = _readRequiredStringOrNull(
+        responseMap,
+        'request_token',
+      );
+      if (token == null) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.other,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      return _ApiStepResult.success(token);
     } on SocketException {
-      throw ApiClientException(ApiClientExceptionType.network);
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HandshakeException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HttpException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on TimeoutException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on FormatException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
+    } catch (_) {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
     }
   }
 
-  Future<String> _validateUser({
+  Future<_ApiStepResult<String>> _validateUser({
     required String username,
     required String password,
     required String requestToken,
@@ -78,18 +138,52 @@ class ApiClient {
       'password': password,
       'request_token': requestToken,
     };
-    final request = await _client.postUrl(url);
+    final request = await _client.postUrl(url).timeout(_requestTimeout);
 
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
-    final response = await request.close();
-    final json = await response.readJson('validate_with_login');
-
-    final token = json['request_token'] as String;
-    return token;
+    try {
+      final response = await request.close().timeout(_requestTimeout);
+      final responseMap = await response.readMap();
+      if (response.statusCode == 401) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.auth,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.other,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      final token = _readRequiredStringOrNull(
+        responseMap,
+        'request_token',
+      );
+      if (token == null) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.auth,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      return _ApiStepResult.success(token);
+    } on SocketException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HandshakeException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HttpException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on TimeoutException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on FormatException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
+    } catch (_) {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
+    }
   }
 
-  Future<String> _makeSession({
+  Future<_ApiStepResult<String>> _makeSession({
     required String requestToken,
   }) async {
     final url = _makeUri(
@@ -99,31 +193,76 @@ class ApiClient {
     final parameters = <String, dynamic>{
       'request_token': requestToken,
     };
-    final request = await _client.postUrl(url);
+    final request = await _client.postUrl(url).timeout(_requestTimeout);
 
     request.headers.contentType = ContentType.json;
     request.write(jsonEncode(parameters));
-    final response = await request.close();
-    final json = await response.readJson('session/new');
+    try {
+      final response = await request.close().timeout(_requestTimeout);
+      final responseMap = await response.readMap();
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.other,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      final sessionId = _readRequiredStringOrNull(
+        responseMap,
+        'session_id',
+      );
+      if (sessionId == null) {
+        return _ApiStepResult.failure(
+          ApiClientExceptionType.other,
+          errorMessage: _extractTmdbError(responseMap),
+        );
+      }
+      return _ApiStepResult.success(sessionId);
+    } on SocketException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HandshakeException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on HttpException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on TimeoutException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.network);
+    } on FormatException {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
+    } catch (_) {
+      return const _ApiStepResult.failure(ApiClientExceptionType.other);
+    }
+  }
 
-    final sessionId = json['session_id'] as String;
-    return sessionId;
+  String? _readRequiredStringOrNull(
+    Map<String, dynamic> json,
+    String key,
+  ) {
+    final value = json[key];
+    if (value is String && value.isNotEmpty) {
+      return value;
+    }
+    return null;
+  }
+
+  String? _extractTmdbError(Map<String, dynamic> json) {
+    final statusMessage = json['status_message'];
+    final statusCode = json['status_code'];
+    if (statusMessage is String && statusMessage.isNotEmpty) {
+      if (statusCode is int) {
+        return '$statusMessage (code: $statusCode)';
+      }
+      return statusMessage;
+    }
+    return null;
   }
 }
 
 extension HttpClientResponseJsonDecode on HttpClientResponse {
-  Future<Map<String, dynamic>> readJson(String label) async {
+  Future<Map<String, dynamic>> readMap() async {
     final body = await transform(utf8.decoder).join();
-    final decodedJson = json.decode(body) as Map<String, dynamic>;
-    final prettyJson = const JsonEncoder.withIndent('  ').convert(decodedJson);
-    developer.log('statusCode=$statusCode', name: 'ApiClient/$label');
-    developer.log('body=$body', name: 'ApiClient/$label');
-    developer.log('json=$prettyJson', name: 'ApiClient/$label');
-    if (kDebugMode && _pauseOnJsonForDebugger) {
-      developer.debugger(
-        message: 'Inspect body/decodedJson/prettyJson in Variables',
-      );
+    final decoded = json.decode(body);
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Invalid API response');
     }
-    return decodedJson;
+    return decoded;
   }
 }

@@ -64,7 +64,7 @@ class _OverviewWidget extends StatelessWidget {
 }
 
 class _TopPosterWidget extends StatelessWidget {
-  const _TopPosterWidget({super.key});
+  const _TopPosterWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _TopPosterWidget extends StatelessWidget {
 }
 
 class _MovieNameWidget extends StatelessWidget {
-  const _MovieNameWidget({super.key});
+  const _MovieNameWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class _ScoreWidget extends StatelessWidget {
 }
 
 class _SummaryWidget extends StatelessWidget {
-  const _SummaryWidget({super.key});
+  const _SummaryWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +157,7 @@ class _SummaryWidget extends StatelessWidget {
 }
 
 class _PeopleWidget extends StatelessWidget {
-  const _PeopleWidget({super.key});
+  const _PeopleWidget();
 
   @override
   Widget build(BuildContext context) {

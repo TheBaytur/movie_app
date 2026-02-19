@@ -22,7 +22,7 @@ class MovieListWidget extends StatefulWidget {
   const MovieListWidget({super.key});
 
   @override
-  _MovieListWidgetState createState() => _MovieListWidgetState();
+  State<MovieListWidget> createState() => _MovieListWidgetState();
 }
 
 class _MovieListWidgetState extends State<MovieListWidget> {
@@ -128,7 +128,7 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
-                        color: Colors.black12.withOpacity(0.2),
+                        color: Colors.black12.withValues(alpha: 0.2),
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       boxShadow: const [

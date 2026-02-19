@@ -20,10 +20,10 @@ class TVShow {
 }
 
 class TWShowListWidget extends StatefulWidget {
-  TWShowListWidget({Key? key}) : super(key: key);
+  const TWShowListWidget({super.key});
 
   @override
-  _TWShowListWidgetState createState() => _TWShowListWidgetState();
+  State<TWShowListWidget> createState() => _TWShowListWidgetState();
 }
 
 class _TWShowListWidgetState extends State<TWShowListWidget> {
@@ -199,11 +199,11 @@ class _TWShowListWidgetState extends State<TWShowListWidget> {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: Colors.black.withOpacity(0.2)),
+                      border: Border.all(color: Colors.black.withValues(alpha: 0.2)),
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),

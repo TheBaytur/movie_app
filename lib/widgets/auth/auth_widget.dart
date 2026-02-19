@@ -26,7 +26,7 @@ class _AuthWidgetState extends State<AuthWidget> {
 }
 
 class _HeaderWidget extends StatelessWidget {
-  const _HeaderWidget({super.key});
+  const _HeaderWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _HeaderWidget extends StatelessWidget {
 }
 
 class _FormWidget extends StatelessWidget {
-  const _FormWidget({super.key});
+  const _FormWidget();
 
     @override
   Widget build(BuildContext context) {
@@ -112,17 +112,13 @@ class _FormWidget extends StatelessWidget {
 }
 
 class _AuthButtonWidget extends StatelessWidget {
-  const _AuthButtonWidget({
-    super.key,
-    
-  });
+  const _AuthButtonWidget();
 
   
 
   @override
   Widget build(BuildContext context) {
     final model = NotifierProvider.watch<AuthModel>(context);
-    const color = Colors.blue;
     final onPressed = model?.canStartAuth == true ? () => model?.auth(context) : null;
     return ElevatedButton(
       onPressed: onPressed,
@@ -138,7 +134,7 @@ class _AuthButtonWidget extends StatelessWidget {
 }
 
 class _ErrorMessageWidget extends StatelessWidget {
-  const _ErrorMessageWidget({super.key});
+  const _ErrorMessageWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +150,6 @@ class _ErrorMessageWidget extends StatelessWidget {
     );
   }
 }
-
 
 
 

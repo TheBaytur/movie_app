@@ -106,7 +106,7 @@ class _NewsCard extends StatelessWidget {
                       Icon(
                         Icons.circle,
                         size: 12,
-                        color: Theme.of(context).primaryColorDark.withOpacity(0.7),
+                        color: Theme.of(context).primaryColorDark.withValues(alpha: 0.7),
                       ),
                       const SizedBox(width: 8),
                       Text(

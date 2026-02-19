@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movie_app/library/widgets/inherited/provider.dart';
 import 'package:movie_app/main_screen/main_screen_model.dart';
 import 'package:movie_app/main_screen/main_screen_widget.dart';
